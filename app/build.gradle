@@ -41,7 +41,7 @@ jacoco {
 }
 
 def coverageSourceDirs = [
-        '../app/src'
+        '../app/src/main/java'
 ]
 
 // run ./gradlew clean testDebugUnitTest jacocoTestReport
@@ -61,7 +61,12 @@ task monkeyTestReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
 
     additionalSourceDirs = files(coverageSourceDirs)
     sourceDirectories = files(coverageSourceDirs)
-    executionData = files('../app/build/jacoco/testDebug.exec')
+    executionData = files('../app/build/jacoco/testDebugUnitTest.exec')
+
+    // workaround for Jacoco bug https://gist.github.com/aalmiray/e6f54aa4b3803be0bcac
+    onlyIf = {
+        true
+    }
 
     reports {
         xml.enabled = true
