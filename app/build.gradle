@@ -44,9 +44,9 @@ def coverageSourceDirs = [
         '../app/src/main/java'
 ]
 
-// run ./gradlew clean testDebugUnitTest jacocoTestReport
+// run ./gradlew clean testDebugUnitTest testCoverageReport
 
-task monkeyTestReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
+task testCoverageReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
     group = "Reporting"
     description = "Generate Jacoco coverage reports"
 
