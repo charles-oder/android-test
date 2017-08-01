@@ -11,6 +11,8 @@ fi
 AVD_NAME=$1
 ANDROID_HOME=$2
 SIM_ARCH="x86_64"
+echo "Accepting all Android SDK licenses"
+yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
 echo "searching for latest $SIM_ARCH images..."
 AVD_IMAGE=$($ANDROID_HOME/tools/bin/sdkmanager --list --verbose | grep system-images | grep $SIM_ARCH | grep google_apis\; | tail -1 | tr -d "\n\r")
 echo "Installing simulator image: $AVD_IMAGE"
